@@ -1,0 +1,38 @@
+name: fixed-point formal verification
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/formal-verification.yml'
+      - 'verification/**'
+      - 'src/i256.rs'
+      - 'Cargo.toml'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/formal-verification.yml'
+      - 'verification/**'
+      - 'src/i256.rs'
+      - 'Cargo.toml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject proof escape hatches
+        run: |
+          if grep -R -n -E --include='*.lean' '\b(sorry|admit|axiom)\b' verification; then
+            exit 1
+          fi
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: verification
+          use-mathlib-cache: true
+          axiom-audit: true
+          axiom-audit-root: SorobanFixedPointMath
+          axiom-audit-allow: propext,Classical.choice,Quot.sound

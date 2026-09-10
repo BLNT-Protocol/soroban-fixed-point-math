@@ -62,6 +62,10 @@ This library was inspired by or directly modified from many sources, primary:
 ## WASM
 The WASM target `wasm32-unknown-unknown` is supported.
 
+## Formal verification
+
+The standalone Lean project in [`verification`](verification/README.md) models checked signed-`I256` arithmetic and proves that the positive-denominator floor and ceiling paths in `src/i256.rs` refine mathematical floor and ceiling under explicit range hypotheses. Downstream users must prove those hypotheses for their own operating domains.
+
 ## Contributions
 Contributions are welcome. Please check out the contribution guide (TODO)!
 
