@@ -1,3 +1,5 @@
 import SorobanFixedPointMath.Rounding
 import SorobanFixedPointMath.I256
 import SorobanFixedPointMath.FixedPointImpl
+import SorobanFixedPointMath.I128
+import SorobanFixedPointMath.I128FixedPointImpl

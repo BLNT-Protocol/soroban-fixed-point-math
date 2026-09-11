@@ -64,7 +64,7 @@ The WASM target `wasm32-unknown-unknown` is supported.
 
 ## Formal verification
 
-The standalone Lean project in [`verification`](verification/README.md) models checked signed-`I256` arithmetic and proves that the positive-denominator floor and ceiling paths in `src/i256.rs` refine mathematical floor and ceiling under explicit range hypotheses. Downstream users must prove those hypotheses for their own operating domains.
+The standalone Lean project in [`verification`](verification/README.md) models checked signed-`I256` and signed-`i128` arithmetic. It proves that the positive-denominator floor and ceiling paths in `src/i256.rs`, and the non-widening `FixedPoint for i128` paths in `src/i128.rs`, refine mathematical floor and ceiling under explicit range hypotheses. It also verifies the `i128` implementation's `none` result for phantom overflow and zero denominators. Downstream users must prove the success hypotheses for their own operating domains.
 
 ## Contributions
 Contributions are welcome. Please check out the contribution guide (TODO)!
